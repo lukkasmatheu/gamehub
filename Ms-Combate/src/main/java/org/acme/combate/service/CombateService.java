@@ -12,15 +12,20 @@ public class CombateService {
     public CombateEntity combate(JogadorEntity jogador1, JogadorEntity jogador2) {
         CombateEntity combate = new CombateEntity();
         Ataque novoAtaque = new Ataque();
-        if(validaAtributos(jogador1,novoAtaque)){
-            jogador2.vida -= novoAtaque.dano;
-            if(jogador2.vida <= 0){
-                jogador2.vida = 0;
-                combate.alive = false; 
+        try{
+            if(validaAtributos(jogador1,novoAtaque)){
+                jogador2.vida -= novoAtaque.dano;
+                if(jogador2.vida <= 0){
+                    jogador2.vida = 0;
+                    combate.alive = false; 
+                }
+                combate.jogador1 = jogador1;
+                combate.jogador2 = jogador2;
+                combate.ataque = novoAtaque;
             }
-            combate.jogador1 = jogador1;
-            combate.jogador2 = jogador2;
-            combate.ataque = novoAtaque;
+
+        }catch(Exception e){
+            throw InternalError("Erro ao realizar operação de combate.");
         }
         return combate;
     }

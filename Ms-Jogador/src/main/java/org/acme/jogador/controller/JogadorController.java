@@ -32,9 +32,9 @@ public class JogadorController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response create(JogadorEntity person) {
+    public JogadorEntity create(JogadorEntity person) {
         person.persist();
-        return Response.created(URI.create("/persons/" + person.id)).build();
+        return person;
     }
 
     @PUT

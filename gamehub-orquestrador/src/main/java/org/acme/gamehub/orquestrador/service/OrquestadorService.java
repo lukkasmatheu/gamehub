@@ -22,7 +22,10 @@ public class OrquestadorService {
     public Combate combate(String idJogadorOne, String idJogadortwo) {
         Jogador jogador1 = jogadorClient.getuser(idJogadorOne);
         Jogador jogador2 = jogadorClient.getuser(idJogadortwo);
-        return combateClient.combate(jogador1, jogador2);
+        Combate combate = combateClient.combate(jogador1, jogador2);
+        jogadorClient.update(idJogadorOne,jogador1);
+        jogadorClient.update(idJogadortwo,jogador2);
+        return combate;
     }
     
 }

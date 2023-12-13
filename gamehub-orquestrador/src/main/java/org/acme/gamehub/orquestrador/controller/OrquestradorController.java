@@ -23,7 +23,7 @@ public class OrquestradorController {
     @RestClient
     OrquestadorService orquestadorService;
 
-    @GET
+    @POST
     @Path("/criar/Jogador")
     public Jogador criarJogador(Jogador jogador) {
         return orquestadorService.createPlayer(jogador);
